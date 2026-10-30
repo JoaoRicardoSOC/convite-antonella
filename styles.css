@@ -1,0 +1,391 @@
+/* =========================================
+   1. IMPORTS E FONTES
+   ========================================= */
+@import url("reset.css");
+@import url('https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+@font-face {
+  font-family: 'Le Petit';
+  src: url('fonts/nf-le-petit-cochon-regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* =========================================
+   2. GLOBAIS E TIPOGRAFIA
+   ========================================= */
+body {
+  background-color: #fff4e9;
+}
+
+/* Tamanhos base (Para telas normais e grandes como iPhone 16 Pro Max) */
+h1 {
+  font-family: 'Le Petit', cursive;
+  font-size: 4.5rem;
+  line-height: 0.8;
+  color: #3d1c61;
+  text-align: center;
+}
+
+h2 {
+  font-family: 'Le Petit', cursive;
+  font-size: 4rem;
+  color: #93adff;
+  text-align: center;
+  margin-top: 0.2rem;
+}
+
+h3 {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #3d1c61;
+  text-align: center;
+}
+
+/* =========================================
+   3. ESTRUTURA E LAYOUT GERAL
+   ========================================= */
+.container {
+  padding: 0;
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+  background-color: #fff4e9;
+}
+
+.section-inicio,
+.section-infos,
+.section-sugestoes {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh; /* Adaptação inteligente para o Safari do iPhone */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1.5rem;
+  box-sizing: border-box;
+}
+
+.section-infos h3 {
+  margin-top: 1rem;
+}
+
+.div-infos {
+  margin-top: 2.5rem;
+}
+
+.div-foto img {
+  width: 16.5rem;
+  margin-bottom: 1.5rem;
+  margin-top: 1rem;
+}
+
+.section-inicio > div,
+.section-infos > div,
+.section-sugestoes > div {
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================================
+   4. MOLDURA DE CONFETES (Corte Perfeito)
+   ========================================= */
+.confete {
+  position: absolute;
+  width: 10.5rem;
+  mix-blend-mode: multiply;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Empurra o confete exatos 3.5rem pra fora, criando o corte da imagem */
+.confete.top-left {
+  top: -3.5rem;
+  left: -3.5rem;
+}
+
+.confete.top-right {
+  top: -3.5rem;
+  right: -3.5rem;
+  scale: -1 1; /* O SEGREDO: Usar 'scale' em vez de 'transform' evita conflitos com a animação */
+}
+
+.confete.bottom-left {
+  bottom: -3.5rem;
+  left: -3.5rem;
+  scale: 1 -1; /* O SEGREDO: Usar 'scale' em vez de 'transform' */
+}
+
+.confete.bottom-right {
+  bottom: -3.5rem;
+  right: -3.5rem;
+  scale: -1 -1; /* O SEGREDO: Usar 'scale' em vez de 'transform' */
+}
+
+/* =========================================
+   5. COMPONENTES: BOTÕES DE INFORMAÇÃO
+   ========================================= */
+.div-info {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto 1.5rem auto;
+  background-color: #fff4e9;
+  border: 3px solid #df82da;
+  border-radius: 999px;
+  overflow: hidden;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.div-info-vazada,
+.div-info-preenchida {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 0.5rem;
+}
+
+.div-info-preenchida {
+  background-color: #df82da;
+  border-radius: 999px;
+}
+
+.div-info span {
+  font-family: 'Antonio', sans-serif;
+  font-size: 1.8rem;
+  line-height: 1.1;
+  text-align: center;
+  margin: 0;
+}
+
+.div-info-vazada span { color: #3d1c61; }
+.div-info-vazada strong { font-weight: 900; }
+.div-info-preenchida span { color: #fff4e9; font-weight: 900; }
+
+.span-endereco {
+  font-size: 1rem !important;
+  font-weight: 400;
+  text-align: left !important;
+}
+
+/* Botões Interativos Circulares */
+.div-interacao {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  width: 100%;
+}
+
+.div-botoes {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+}
+
+/* Estrutura atualizada do botão, agora suportando tags <a> de forma limpa */
+.div-botao {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  text-decoration: none; /* Remove sublinhado padrão dos links */
+  /* Mantemos as transições do hover juntas com a da animação no item 9 */
+}
+
+/* Efeito ao passar o mouse ou clicar */
+.div-botao:hover,
+.div-botao:active {
+  transform: scale(1.05) !important; /* Leve zoom */
+  opacity: 0.85; /* Leve transparência */
+}
+
+.div-botao-calendario,
+.div-botao-local {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5.5rem;
+  height: 5.5rem;
+  border-radius: 50%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+.div-botao-calendario { background-color: #3d1c61; }
+.div-botao-local { background-color: #93adff; }
+
+.div-botao-calendario img,
+.div-botao-local img { width: 45%; }
+.div-botao-calendario img { filter: brightness(0) invert(1); }
+
+.div-botao p {
+  font-family: 'Nunito', sans-serif;
+  color: #3d1c61;
+  text-align: center;
+  font-size: 1.15rem;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.div-botao p strong { font-weight: 800; }
+
+.texto-interacao { text-align: center; }
+.texto-interacao span {
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.9rem;
+  color: #3d1c61;
+  line-height: 1.2;
+}
+
+/* =========================================
+   6. COMPONENTES: SUGESTÕES DE PRESENTES
+   ========================================= */
+.div-presentes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+  margin-top: 2.5rem;
+}
+
+.card-presente {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  max-width: 360px;
+  border: 3px solid #df82da;
+  border-radius: 999px;
+  padding: 1rem 1.5rem;
+  gap: 1rem;
+}
+
+.img-presente img {
+  width: 6rem;
+  mix-blend-mode: multiply;
+}
+
+.img-presente-2 img {
+  width: 4.5rem !important;
+}
+
+.texto-presente {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 1;
+}
+
+.texto-presente h4 {
+  font-family: 'Antonio', sans-serif;
+  font-weight: 900;
+  color: #3d1c61;
+  font-size: 2.2rem;
+  line-height: 1;
+  margin: 0;
+}
+
+.texto-presente p {
+  font-family: 'Antonio', sans-serif;
+  font-weight: 900;
+  color: #93adff;
+  font-size: 1.3rem;
+  line-height: 1.1;
+  margin-top: 0.4rem;
+}
+
+/* =========================================
+   7. RODAPÉ / CRÉDITOS
+   ========================================= */
+.rodape-creditos {
+  position: absolute; /* O SEGREDO: Remove o rodapé do fluxo normal */
+  bottom: 1.5rem; /* Prega ele exatamente no fim da página */
+  left: 0;
+  width: 100%;
+  text-align: center;
+  z-index: 2; /* Garante que fique acima dos confetes */
+}
+
+.rodape-creditos a {
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.85rem;
+  color: #3d1c61;
+  text-decoration: none;
+  line-height: 1.2;
+  display: inline-block;
+}
+
+.rodape-creditos a:hover,
+.rodape-creditos a:active {
+  opacity: 0.7;
+}
+
+/* =========================================
+   8. RESPONSIVIDADE (Telas menores - Ex: iPhone SE)
+   ========================================= */
+@media (max-width: 390px) {
+  /* Encolhe as fontes principais */
+  h1 { font-size: 3.8rem; }
+  h2 { font-size: 3.3rem; }
+  h3 { font-size: 1.3rem; }
+  
+  /* Encolhe imagens e a moldura para não sumirem na tela pequena */
+  .div-foto img { width: 11.5rem; }
+  .confete { width: 8.5rem; }
+  .confete.top-left, .confete.top-right { top: -2.5rem; }
+  .confete.top-left, .confete.bottom-left { left: -2.5rem; }
+  .confete.top-right, .confete.bottom-right { right: -2.5rem; }
+  .confete.bottom-left, .confete.bottom-right { bottom: -2.5rem; }
+  
+  /* Reduz os botões e pílulas */
+  .div-info { max-width: 320px; } 
+  .div-info span { font-size: 1.5rem; }
+  .span-endereco { font-size: 0.85rem !important; }
+  
+  .div-botoes { gap: 1.5rem; }
+  .div-botao-calendario,
+  .div-botao-local { width: 4.8rem; height: 4.8rem; }
+  .div-botao p { font-size: 1rem; }
+  
+  /* Ajusta as caixas de presentes */
+  .card-presente { 
+    max-width: 280px; 
+    padding: 0.8rem 1rem; 
+  }
+  .texto-presente h4 { font-size: 1.8rem; }
+  .texto-presente p { font-size: 1.1rem; }
+  .img-presente img { width: 4.5rem; }
+  .img-presente-2 img { width: 3.5rem !important; }
+}
+
+/* =========================================
+   9. ANIMAÇÕES (Scroll Reveal)
+   ========================================= */
+
+/* Estado inicial do elemento escondido */
+.hidden-anim {
+  opacity: 0;
+  transform: translateY(30px); /* Começa 30px pra baixo */
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Suavidade de movimento */
+}
+
+/* Estado final do elemento aparecendo */
+.show-anim {
+  opacity: 1;
+  transform: translateY(0); /* Sobe pra posição original */
+}
+
+/* Para garantir que o hover dos botões ainda funcione quando ele estiver visível */
+.div-botao.show-anim {
+  transition: transform 0.2s ease, opacity 0.8s ease; 
+}
