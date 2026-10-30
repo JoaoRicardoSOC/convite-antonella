@@ -91,6 +91,10 @@ h3 {
   z-index: 1;
 }
 
+.container iframe {
+  width: 100%;
+}
+
 /* =========================================
    4. MOLDURA DE CONFETES (Corte Perfeito)
    ========================================= */
